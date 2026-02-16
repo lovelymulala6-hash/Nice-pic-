@@ -1,0 +1,123 @@
+<html><head><style>body {
+   color: black;
+}
+Add color </style></head><body><p>&lt;!DOCTYPE html&gt;</p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random African Image Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: &#39;Poppins&#39;, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+}
+.container {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+h1 { margin-top: 0; font-weight: 700; }
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  background: #ffcc00;
+  color: black;
+  margin: 10px;
+  transition: 0.3s ease;
+}
+button:hover { transform: scale(1.05); }
+.download-btn { background: #00e676; }
+img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+}
+footer {
+  margin-top: 20px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🌍 Random African Picture Generator</h1>
+
+  <p>Select a category:</p>
+  <select id="category">
+    <option value="african people">African People</option>
+    <option value="african wildlife">African Wildlife</option>
+    <option value="african culture">African Culture</option>
+    <option value="african landscape">African Landscape</option>
+    <option value="african city">African Cities</option>
+  </select>
+
+  <br>
+  <button onclick="generateImage()">Generate Random Image</button>
+  <button class="download-btn" onclick="downloadImage()">Download Image</button>
+
+  <img id="image" src="" alt="Random African Image" style="display:none;">
+
+  <footer>Powered by Unsplash Source API</footer>
+</div>
+
+<script>
+let currentImageURL = &quot;&quot;;
+
+function generateImage() {
+  const category = document.getElementById(&#39;category&#39;).value;
+  const image = document.getElementById(&#39;image&#39;);
+
+  const url = <code>https://source.unsplash.com/1600x900/?${encodeURIComponent(category)},africa&amp;random=${Math.random()}</code>;
+
+  currentImageURL = url;
+  image.src = url;
+  image.style.display = &#39;block&#39;;
+}
+
+function downloadImage() {
+  if (!currentImageURL) {
+    alert(&quot;Please generate an image first.&quot;);
+    return;
+  }
+
+  const link = document.createElement(&#39;a&#39;);
+  link.href = currentImageURL;
+  link.download = &quot;african_image.jpg&quot;;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+</body>
+</html>
+</body></html>
